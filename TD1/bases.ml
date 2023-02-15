@@ -28,9 +28,5 @@ let rec d n = match n with
 |y -> 1 + d (y/10);;
 
 (*Exo 4*)
-let rec hamming n = function
-|0 -> true
-|x when (x mod 2 = 0) -> hamming (x mod 2)
-|x when (x mod 3 = 0) -> hamming (x mod 3)
-|x when (x mod 5 = 0) -> hamming (x mod 5) 
-|_ -> false
+let hamming x = (((x mod 5) mod 3) mod 2) = 0;;
+
