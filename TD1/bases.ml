@@ -37,4 +37,11 @@ let delta u = function x -> u (x+1) - u (x);;
 let th x = let exp2 x = exp (-2.*.x) in (1.-.exp2 x)/.(1.+.exp2 x);;
 
 (*Exo 9*)
-type nombre = 
+type nombre = Flottant of float | Entier of int;;
+
+let add a b = match a, b with
+|Entier a, Entier b -> Entier (a + b)
+|Flottant a, Flottant b -> Flottant (a +. b)
+|Flottant a, Entier b -> Flottant (a +. (float_of_int b))
+|Entier a, Flottant b -> Flottant ((float_of_int a) +. b);;
+ 
