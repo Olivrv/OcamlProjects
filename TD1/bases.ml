@@ -30,3 +30,11 @@ let rec d n = match n with
 (*Exo 4*)
 let hamming x = (((x mod 5) mod 3) mod 2) = 0;;
 
+(*Exo 6*)
+let delta u = function x -> u (x+1) - u (x);;
+
+(*Exo 7*)
+let th x = let exp2 x = exp (-2.*.x) in (1.-.exp2 x)/.(1.+.exp2 x);;
+
+(*Exo 9*)
+type nombre = 
