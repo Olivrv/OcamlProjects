@@ -19,9 +19,3 @@ let rec addition n = function
 |Zero -> n
 |N(Zero, x) -> successeur (addition n x)
 |_ -> failwith "whattheheck" 
-
-let one = successeur Zero
-let two = successeur one
-let three = successeur two
-
-let test = addition one two
