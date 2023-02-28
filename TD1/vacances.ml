@@ -11,4 +11,17 @@ let curry f x y = f (x,y)
 let uncurry f (x,y) = f x y
 
 (*Exo 10*)
-type ent = Zero | S
+type ent = Zero | N of ent * ent
+
+let successeur n = N(Zero, n)
+
+let rec addition n = function
+|Zero -> n
+|N(Zero, x) -> successeur (addition n x)
+|_ -> failwith "whattheheck"
+
+let one = successeur Zero
+let two = successeur one
+let three = successeur two
+
+let test = addition one two
