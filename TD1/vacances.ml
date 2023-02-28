@@ -18,7 +18,7 @@ let successeur n = N(Zero, n)
 let rec addition n = function
 |Zero -> n
 |N(Zero, x) -> successeur (addition n x)
-|_ -> failwith "whattheheck"
+|_ -> failwith "whattheheck" 
 
 let one = successeur Zero
 let two = successeur one
