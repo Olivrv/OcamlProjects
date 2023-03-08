@@ -34,7 +34,12 @@ let ordre_lex a b =
   let rec aux i = i = length || a.(i) < b.(i) || a.(i) = b.(i) && aux(i+1) in (length = Array.length b) && (length = 0 || aux 0);;
 ordre_lex [|2, 3, 4, 5|] [|1, 2, 3, 4|]
 
-(*Exo 5*)
-let begaie1 l = 
-  let length = List.length l in length
-  
+(*Exo 4*)
+let cribble_simple n =
+  let tab = Array.make n 0 in tab
+
+let rec begaie l = match l with
+|[] -> []
+|t::q -> t::t::(begaie q);;
+
+begaie [1; 2; 3] 
