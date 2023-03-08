@@ -43,3 +43,21 @@ let rec begaie l = match l with
 |t::q -> t::t::(begaie q);;
 
 begaie [1; 2; 3] 
+
+let rec max l = match l with
+|[] -> failwith "nope"
+|[a] -> a
+|t::q -> let m = max q in if t > m then t else m;;
+max [1;2;3;4;5;6;7; -1; 9; -8]
+
+let decoupe l p = 
+  let rec aux li lp = function
+  |[] -> li, lp
+  |t::q -> if t < p then aux (t::li) lp q else aux li (t::lp) q in
+  aux [] [] l
+
+  let decoupe_strict l p = 
+    let rec aux li lp np = function
+    |[] -> li, lp
+    |t::q -> if t < p then aux (t::li) lp np q else if t > p then aux li (t::lp) np q else aux li lp (np+1) q in
+    aux [] [] 0 l
