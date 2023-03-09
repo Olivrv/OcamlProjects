@@ -61,3 +61,6 @@ let decoupe l p =
     |[] -> li, lp
     |t::q -> if t < p then aux (t::li) lp np q else if t > p then aux li (t::lp) np q else aux li lp (np+1) q in
     aux [] [] 0 l
+
+let cube x = x*x*x
+let armstrong n = let a = n mod 10 in let b = (n-a)/10 mod 10 in let c = (n - 10*b - a)/100 in n = (cube a) + (cube b) + (cube c)
