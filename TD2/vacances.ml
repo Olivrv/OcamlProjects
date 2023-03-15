@@ -23,3 +23,21 @@ let betterReverse liste =
   |t::q -> transfer (t::reversed) q
   in transfer [] liste
 
+
+(*Exo 3*)
+let rec a_der = function
+|[] -> failwith "none"
+|t::[a] -> t
+|t::q -> a_der q;;
+
+(*Exo 4*)
+
+(*Exo 6*)
+let c_gauche = function
+|[] -> []
+|t::q -> q@[t];;
+let rec c_gauche2 = function
+|[] -> []
+|[a] -> [a]
+|a::b::q -> b::c_gauche2 (a::q);;
+c_gauche2 [1;2;3;4;5];;
