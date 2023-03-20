@@ -13,5 +13,20 @@ let fib n =
   done;
   !b;;
 
+(*Exo 3*)
+let nb_occurrence tab x =
+  let s = ref 0 in
+  for i = 0 to Array.length tab - 1 do 
+    if tab.(i) = x then s := !s + 1
+  done;
+  !s;;
 
+(*Exo 4*)
+let map f tab =
+  let l = Array.length tab - 1 in
+  for i = 0 to l do
+    f tab.(i)
+  done;;
+
+(*Exo 5*)
 
