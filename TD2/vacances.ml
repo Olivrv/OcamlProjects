@@ -31,6 +31,9 @@ let rec a_der = function
 |t::q -> a_der q;;
 
 (*Exo 4*)
+let rec prefixes = function 
+| [] -> []
+| t::q -> [t]::(List.map (fun a -> t::a) (prefixes q));;
 
 (*Exo 6*)
 let c_gauche = function
@@ -41,3 +44,31 @@ let rec c_gauche2 = function
 |[a] -> [a]
 |a::b::q -> b::c_gauche2 (a::q);;
 c_gauche2 [1;2;3;4;5];;
+let c_droite l = reverse (c_gauche (reverse l))
+
+(*Exo 7*)
+(*a)*)
+let inter li1 li2 = 
+  let rec aux l1 l2 l3 = match l1 with
+  |[] -> l3
+  |t::q -> if List.mem t l2 then aux q l2 (t::l3) else aux q l2 l3 in
+  aux li1 li2 [];;
+inter [1;2;3;4;5] [2;3;8];;
+
+(*b)*)
+let rec union l2 = function
+|[] -> l2
+|t::q -> if List.mem t l2 then union l2 q else union (t::l2) q;;
+
+(*Exo 8*)
+(*a)*)
+let clean_last l = 
+  let rec aux l_i l_f = match l_i with
+  |[] -> l_f
+  |t::q -> if List.mem t q then aux q l_f else aux q (t::l_f) in
+  aux l [];;
+
+(*b)*)
+let rec clean_first l lf = match l with
+|[] -> lf
+|t::q -> if List.mem t lf then clean_first q lf else clean_first q (t::lf);;

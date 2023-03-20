@@ -29,4 +29,7 @@ let map f tab =
   done;;
 
 (*Exo 5*)
-
+let est_palindrome tab = 
+  let length = Array.length tab in
+  let rec aux i = if i = -1 then true else ((tab.(i) = tab.(length - i - 1) && aux(i-1))) in
+  aux ((length/2)-1);;
