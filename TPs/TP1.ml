@@ -60,5 +60,15 @@ let decoupe_strict l p =
   let rec aux li lp np = function
   |[] -> li, lp
   |t::q -> if t < p then aux (t::li) lp np q else if t > p then aux li (t::lp) np q else aux li lp (np+1) q in
-  aux [] [] 0 l
+aux [] [] 0 l;;
 
+(*Correction*)
+let rec decoupe l p = match l with
+|[] -> ([],[])
+|t::q -> let (linf, lsup) = decoupe q p in
+          if t < p then (t::linf, lsup) else (linf, t::lsup);;
+
+let rec concat = function
+|[] -> []
+|t::q -> t@ (concat q);;
+concat [[1;2];[3];[4;2;5]];;
