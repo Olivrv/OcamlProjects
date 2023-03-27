@@ -68,6 +68,12 @@ let clean_last l =
   |t::q -> if List.mem t q then aux q l_f else aux q (t::l_f) in
   aux l [];;
 
+(*Correction 8a)*)
+let rec ens = function
+|[] -> []
+|t::q when List.mem t q -> ens q
+|t::q -> t::(ens q)
+
 (*b)*)
 let rec clean_first l lf = match l with
 |[] -> lf
