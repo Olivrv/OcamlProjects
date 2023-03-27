@@ -36,8 +36,6 @@ let prode_d pol1 pol2 =
   |t::q -> somme_d (prode_mc t d pol2) (aux q pol2 (d+1)) in
   aux pol1 pol2 0;;
 
-
-
 let rec div pol1 pol2 = match pol1, pol2 with
 |([],[]) -> [1],[]
 |([],p) -> [],p
