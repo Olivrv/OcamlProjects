@@ -78,3 +78,13 @@ let rec ens = function
 let rec clean_first l lf = match l with
 |[] -> lf
 |t::q -> if List.mem t lf then clean_first q lf else clean_first q (t::lf);;
+
+let ens2 l = 
+  let rec aux l lp = match l with
+  |[] -> []
+  |t::q when List.mem t lp -> aux q lp
+  |t::q -> t::(aux q (t::lp))
+in aux l [];;
+
+ens [5;1;2;3;4;5];;
+ens2 [5;1;2;3;4;5];;
