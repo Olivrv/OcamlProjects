@@ -59,6 +59,12 @@ let supprime file = let le, lf = file in
   if le = [] then failwith "ė̸͇͉̊͋̄̃ͅr̸̩͚͓̾̐̈́͒͠r̴̠͖̙͓͗̋͠ó̸͇̝̦̘̒̈͒ͅṛ̵̢̖̦͛" 
   else let t::_ = lf in t;;
 
+(*Correction*)
+let rec supprime file = match file with
+|[],[] -> failwith "ė̸͇͉̊͋̄̃ͅr̸̩͚͓̾̐̈́͒͠r̴̠͖̙͓͗̋͠ó̸͇̝̦̘̒̈͒ͅṛ̵̢̖̦͛"
+|debut, t::q -> t, (debut,q)
+|debut, [] -> supprime ([], reverse debut);;
+
 (*Exo 6*)
 let compresse l =
   if l = [] then [] 
@@ -72,4 +78,6 @@ let compresse l =
         else aux q (t::seen)
     in let t::q = rev in aux q [t];;
 
-compresse [1;2;2;2;4;4;4;7;5;6;6;7]
+let fusionne l1 l2 = 
+  let rec aux l1 l2 [] = match (l1, l2) with
+  |([], []) -> 
