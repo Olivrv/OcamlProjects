@@ -66,7 +66,7 @@ let rec supprime file = match file with
 |debut, [] -> supprime ([], reverse debut);;
 
 (*Exo 6*)
-let compresse l =
+let compress l =
   if l = [] then [] 
   else
     let rev = reverse l in
@@ -78,6 +78,28 @@ let compresse l =
         else aux q (t::seen)
     in let t::q = rev in aux q [t];;
 
-let fusionne l1 l2 = 
-  let rec aux l1 l2 [] = match (l1, l2) with
-  |([], []) -> 
+(*Correction*)
+let rec compresse = function
+|[] -> []
+|[a] -> [a]
+|t::a::q -> if t = a then compresse (a::q) else t::(compresse q);;
+
+(*Exo 7*)
+let rec fusionne l1 l2 = match l1, l2 with
+|[], _ -> l2
+|_, [] -> l1
+|t1::q1, t2::q2 -> 
+  if t1<t2 then
+     t1::(fusionne q1 l2)
+  else 
+    t2::(fusionne l1 q2);;
+
+let rec partition l = match l with
+|[] -> ([],[])
+|[t] -> ([t], [])
+|t1::t2::q -> (t1::fst (partition q), t2::snd (partition q));;
+
+let rec trifusion l = match l with
+|[] -> []
+|[a] -> [a]
+|_ -> let l1, l2 = partition l in fusionne (trifusion l1) (trifusion l2);;
