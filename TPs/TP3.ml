@@ -10,7 +10,7 @@ let rec foldr f z l = match l with
 
 |[] -> failwith "           ė̸͇͉̊͋̄̃ͅr̸̩͚͓̾̐̈́͒͠r̴̠͖̙͓͗̋͠ó̸͇̝̦̘̒̈͒ͅṛ̵̢̖̦͛"
 |[a] -> f(a,z)
-|t::q -> f(t, (foldr f z q))
+|t::q -> f(t, (foldr f z q));;
 
 let foldl g z l =
   let l = reverse l in
@@ -52,3 +52,24 @@ let supprime l =
   else 
     let t::q = reverse l in (t, reverse q);;
 
+type 'a file = File of 'a list * 'a list;;
+let file = File ([1;2;3],[2]);;
+let ajoute file a = let (le, lf) = file in (a::le, lf);;
+let supprime file = let le, lf = file in 
+  if le = [] then failwith "ė̸͇͉̊͋̄̃ͅr̸̩͚͓̾̐̈́͒͠r̴̠͖̙͓͗̋͠ó̸͇̝̦̘̒̈͒ͅṛ̵̢̖̦͛" 
+  else let t::_ = lf in t;;
+
+(*Exo 6*)
+let compresse l =
+  if l = [] then [] 
+  else
+    let rev = reverse l in
+    let rec aux li seen = match li with
+    |[] -> seen
+    |t::q -> 
+      let prev::_ = seen in 
+        if t = prev then aux q seen
+        else aux q (t::seen)
+    in let t::q = rev in aux q [t];;
+
+compresse [1;2;2;2;4;4;4;7;5;6;6;7]
