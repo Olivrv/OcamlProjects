@@ -33,3 +33,23 @@ let est_palindrome tab =
   let length = Array.length tab in
   let rec aux i = if i = -1 then true else (aux(i-1) && tab.(i) = tab.(length - i - 1)) in
   aux ((length/2)-1);;
+
+
+(*Exo 6*)
+let maxi tab =
+  let n = Array.length tab in
+  let max = ref tab.(0) in
+  let l = Array.make n true in
+  for k = 1 to (n - 1) do 
+    if tab.(k) < !max then
+      l.(k) <- false;
+    if tab.(k) = !max then
+      l.(k) <- true;
+    if tab.(k) > !max then 
+      max := tab.(k);
+      for i = 0 to (k - 1) do 
+        l.(i) <- false
+      done;
+  done;
+  l;;
+maxi [|1;1;1;1;1;1;1;2;22;2;5;22;22;0;0;0;22|]
