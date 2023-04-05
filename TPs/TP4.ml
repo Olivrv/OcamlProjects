@@ -40,9 +40,10 @@ let resoudre dimensions =
           false 
           end
       end
-  in (parcours 0 (0,0) (0,0), successeur);;
+  in if parcours 0 (0,0) (0,0) then chemin(successeur) else [];;
 
-  let rec chemin matrix pos = 
+let chemin matrix pos =
+  let rec aux matrix pos li = match   
 
 
 
