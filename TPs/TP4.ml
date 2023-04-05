@@ -45,6 +45,13 @@ let resoudre dimensions =
 let chemin successeur pos = 
 
 let affiche_chemin (n,p) chemin =
+  let chemin = Array.of_list chemin in
+  let matrice = Array.make_matrix n p 0 in  
+  for i = 0 to Array.length chemin do
+    set matrice chemin.(i) i
+  done;
+  matrice;
+
 
 
 
