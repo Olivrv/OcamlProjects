@@ -43,7 +43,10 @@ let resoudre dimensions =
   in if parcours 0 (0,0) (0,0) then chemin(successeur) else [];;
 
 let chemin successeur pos = 
-  
+
+let affiche_chemin (n,p) chemin =
+
+
 
 
 
