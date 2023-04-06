@@ -23,18 +23,18 @@ let get matrix pos =
   let x = fst pos and y = snd pos in
   matrix.(x).(y);;
 
-  let chemin successeur pos = 
-    let li = ref [pos] in
-    let npos = ref pos in 
-    for i = 0 to Array.length successeur - 1 do
-      for j = 0 to Array.length successeur.(i) - 1 do 
-        let m = fst !npos in
-        let n = snd !npos in
-        li := (m,n)::!li;
-        npos := successeur.(m).(n)
-      done;
+let chemin successeur pos = 
+  let li = ref [pos] in
+  let npos = ref pos in 
+  for i = 0 to Array.length successeur - 1 do
+    for j = 0 to Array.length successeur.(i) - 1 do 
+      let m = fst !npos in
+      let n = snd !npos in
+      li := (m,n)::!li;
+      npos := successeur.(m).(n)
     done;
-    !li;;
+  done;
+  !li;;
 
 let resoudre dimensions = 
   let (n,p) = dimensions in
@@ -59,13 +59,13 @@ let resoudre dimensions =
 let affiche_chemin (n,p) chemin =
   let chemin = Array.of_list chemin in
   let matrice = Array.make_matrix n p 0 in  
-  for i = 0 to Array.length chemin do
+  for i = 0 to Array.length chemin - 1 do
     set matrice chemin.(i) i
   done; 
   matrice;;
 
 
-resoudre (5,5)
+affiche_chemin (4,4) (resoudre (4,4))
 
 
 
