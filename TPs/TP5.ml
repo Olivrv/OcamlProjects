@@ -77,9 +77,8 @@ let rec supprimer x arbre = match arbre with
 |Feuille -> failwith "Element non trouvé"
 |Noeud(Feuille, valeur, Feuille) when valeur = x -> Feuille
 |Noeud(arbreg, valeur, arbred) when x = valeur -> Noeud(supprimer (maximum arbreg) arbreg, maximum arbreg, arbred)
-|Noeud(arbreg, valeur, arbred) -> 
-  if x > valeur then Noeud(arbreg, valeur, supprimer x arbred)
-  else Noeud(supprimer x arbreg, valeur, arbred);;
+|Noeud(arbreg, valeur, arbred) when x > valeur ->  Noeud(arbreg, valeur, supprimer x arbred)
+|Noeud(arbreg, valeur, arbred) -> Noeud(supprimer x arbreg, valeur, arbred);;
 
 supprimer 7 exemple;;
 
