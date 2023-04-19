@@ -65,3 +65,22 @@ let rec cree liste = match liste with
 |[] -> Feuille
 |t::q -> insere t (cree q);;
 
+open Random
+let rec random_arbre n = 
+  let li = ref [] in
+  for i = 1 to n do 
+    li := [Random.int (10*n)]::(!li)
+  done;
+  cree !li;;
+
+let rec supprimer x arbre = match arbre with
+|Feuille -> failwith "none"
+|Noeud(Feuille, valeur, Feuille) when valeur = x -> Feuille
+|Noeud(arbreg, valeur, arbred) when x = valeur -> Noeud(supprimer (maximum arbreg) arbreg, maximum arbreg, arbred)
+|Noeud(arbreg, valeur, arbred) -> 
+  if x > valeur then Noeud(arbreg, valeur, supprimer x arbred) 
+  else Noeud(supprimer x arbreg, valeur, arbred);;
+
+supprimer 7 exemple;;
+
+let tri_arbre li = contenu (cree li);;  
