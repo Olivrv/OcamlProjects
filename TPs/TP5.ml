@@ -74,7 +74,7 @@ let rec random_arbre n =
   cree !li;;
 
 let rec supprimer x arbre = match arbre with
-|Feuille -> failwith "none"
+|Feuille -> failwith "Element non trouvé"
 |Noeud(Feuille, valeur, Feuille) when valeur = x -> Feuille
 |Noeud(arbreg, valeur, arbred) when x = valeur -> Noeud(supprimer (maximum arbreg) arbreg, maximum arbreg, arbred)
 |Noeud(arbreg, valeur, arbred) -> 
