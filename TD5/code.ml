@@ -16,5 +16,10 @@ let rec arbFibo = function
 (*TD Rab Exo 2*)
 type 'a arbreb = Nil | Noeud of 'a *'a arbreb *'a arbreb ;;
 let rec parcoursPrefixe = function
-|Nil -> print_newline
-|Noeud(a, arbg, arbd) -> (print_int a); (parcoursPrefixe arbg); (parcoursPrefixe arbd);;
+|Nil -> print_string " " 
+|Noeud(a, arbg, arbd) -> (parcoursPrefixe arbg); 
+                         (parcoursPrefixe arbd); 
+                         (print_int a);;
+
+let arbre = Noeud(0, Noeud(1, Noeud(1, Nil, Nil), Nil), Nil);;
+parcoursPrefixe(arbre)
