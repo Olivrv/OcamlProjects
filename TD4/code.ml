@@ -23,7 +23,7 @@ let rec compte n liste = match liste with
             compte n q + compte (n-t) (liste) 
          else 
             compte n q;;
-compte 50 [1;2;5;10;20];;
+compte 12 [1;2];;
 
 (*Exo 7*)
 let rec solve ti ts te= function
