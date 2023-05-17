@@ -38,3 +38,12 @@ let c3 = [|[|3;1;2|];[|1;2;3|];[|2;3;1|]|];;
 let c4 = [|[|4;1;2;3|];[|1;2;3;4|];[|2;3;4;1|];[|3;4;1;2|]|];;
 let c42 = [|[|4;1;2;3|];[|1;4;3;2|];[|2;3;4;1|];[|3;2;1;4|]|];;
 nom_de_fonction_cool c42 4;;
+let rec josephe n = match n with
+|1 -> 0
+|n -> (josephe (n-1) + 2) mod n;;
+(josephe 186) + 1;;
+let rec josephe = function
+|1 -> 1
+|2 -> 1
+|n when n mod 2 = 0 -> 2*josephe(n/2) - 1
+|n -> 2*josephe(n/2) + 1;;
