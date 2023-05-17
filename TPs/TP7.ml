@@ -35,9 +35,10 @@ let nom_de_fonction_cool t p =
   !bob;;
 let c2 = [|[|1;2|];[|2;1|]|];;
 let c3 = [|[|3;1;2|];[|1;2;3|];[|2;3;1|]|];;
+let c3 = [|[|2;2;2|];[|2;2;2|];[|2;2;2|]|];;
 let c4 = [|[|4;1;2;3|];[|1;2;3;4|];[|2;3;4;1|];[|3;4;1;2|]|];;
 let c42 = [|[|4;1;2;3|];[|1;4;3;2|];[|2;3;4;1|];[|3;2;1;4|]|];;
-nom_de_fonction_cool c42 4;;
+nom_de_fonction_cool c2 2;;
 let rec josephe n = match n with
 |1 -> 0
 |n -> (josephe (n-1) + 2) mod n;;
