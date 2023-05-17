@@ -11,7 +11,27 @@ let rec insererArbre tas arbre = match tas with
 |[] -> [arbre]
 |t::q when rang(t) < rang(arbre) -> arbre::t::q
 |t::q when rang(t) = rang(arbre) -> insererArbre tas (fusionArbre t arbre)
-|t::q when rang(t) > rang(arbre) -> insererArbre q arbre;;
+|t::q when rang(t) > rang(arbre) -> insererArbre q arbre
+|_::_ -> failwith "don't worry be happy";;
 
-let rec insererElement tas n = match tas with
-|
+let rec insererElement tas n = insererArbre tas (creerArbre n);;
+let rec trouverMax = function 
+  |[] -> failwith "nope"
+  |[Noeud(a,_ ,_ )] -> a
+  |Noeud(n,_,_)::q -> max n (trouverMax q);;
+
+let rec fusionTas tas1 tas2 = match tas1 with
+|[] -> tas2
+|t::q -> fusionTas q (insererArbre tas2 t);;
+let reverse liste =
+  let rec transfer reversed = function
+  |[] -> reversed
+  |t::q -> transfer (t::reversed) q
+  in transfer [] liste
+let extraireArbre tas = 
+  let m = trouverMax tas in
+  let rec aux avant = function 
+  |[] -> failwith "nope"
+  |t::q when priorite(t) = m -> (t, ((reverse avant)@q))
+  |t::q -> aux (t::avant) q 
+in aux [] tas;;
