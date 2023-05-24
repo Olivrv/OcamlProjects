@@ -23,3 +23,14 @@ let rec parcoursPrefixe = function
 
 let arbre = Noeud(0, Noeud(1, Noeud(1, Nil, Nil), Nil), Nil);;
 parcoursPrefixe(arbre)
+
+(*Exo 3*)
+type arbre = Feuille | Noeud of arbre * arbre
+let rec strahler = function 
+|Feuille -> 1
+|Noeud(arb1,arb2) -> 
+  let (i,j) = (strahler arb1, strahler arb2) in 
+  if i = j then (i + 1)
+  else max i j;;
+
+  
