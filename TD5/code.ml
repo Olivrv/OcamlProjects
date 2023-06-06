@@ -32,5 +32,3 @@ let rec strahler = function
   let (i,j) = (strahler arb1, strahler arb2) in 
   if i = j then (i + 1)
   else max i j;;
-
-  
