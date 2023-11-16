@@ -38,7 +38,7 @@ let rec minimax = function
 |t::q -> let (u,v) = minimax q in
         if t > v then (u,t) else 
           if t < u then (t,v) 
-          else (u,v)
+          else (u,v);;
 (*Exo 4*)
 let rec concat = function
 |[] -> []
