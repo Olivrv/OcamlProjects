@@ -43,8 +43,34 @@ let sudoku grille =
     done;
     b := false; 
     !b;
-  in exploration grille;
-  if (case_vide grille) = 81 then raise Not_found;;
+  in exploration grille;;
+
+let sudoku g =
+  let rec remplir_case i =
+    let (a,b) = coordonnes i in match (a,b) with
+    |_ when g.(a).(b) = g -> g.(a).(b) <- 0
+    |_ when verification i (g.(a).(b) + 1) -> g.(a).(b) <- g.(a).(b) + 1
+    |_ -> g.(a).(b) <- g.(a).(b) + 1;
+        remplir_case i
+  in
+  let rec aux m = 
+    remplir_case m;
+    let (a,b) = coordonnes m in
+    if g.(a).(b) = 0 then false 
+    else 
+      begin
+      let nouv = case_vide g in
+      if nouv = 81 then true
+      else let ok = aux nouv in 
+        if ok then true 
+        else aux m
+      end
+  in
+  let m = case_vide g in
+  if m = 81 then ()
+  else 
+    if aux m then () 
+    else failwith "Non soluble";;
 
 let grille = 
   [|
