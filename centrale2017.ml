@@ -11,5 +11,19 @@ let est_synchronisant m u =
   done;
   !ok;;
 
-  
- 
+let ajoute f x =
+  let n = Array.length f.tab in
+  if (f.fin + 1) mod n = f.deb then failwith "File pleine"
+  else 
+    f.fin <- (f.fin + 1) mod n;
+    f.tab.(f.fin) <- x;;
+
+let retire f = 
+  let n = Array.length f.tab in
+  if f.vide = true then failwith "No way"
+  else 
+    let a = f.tab.(f.deb) in 
+    f.deb <- (f.deb - 1) mod n;
+    if f.deb = f.fin then (f.vide <- true;)
+    a;;
+     
